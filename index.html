@@ -1,40 +1,18 @@
 <body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+<script src="functions.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css"/>
 
-  <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyB0C7X47VCzCDIgnyoluPdnebnnHztHkfY",
-      authDomain: "covidvaccine-5c9e7.firebaseapp.com",
-      projectId: "covidvaccine-5c9e7",
-      storageBucket: "covidvaccine-5c9e7.appspot.com",
-      messagingSenderId: "1089222503575",
-      appId: "1:1089222503575:web:a6d2b22574674148b14dd2",
-      measurementId: "G-0LGEWDCVKJ"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-
-  <script src="functions.js"></script>
-  <link type="text/css" rel="stylesheet" href="style.css" />
-
-  <div class="split left yes box">
+<div class="split left yes box">
     <div class="centered yes">
-      <h2 class="yes">Yes</h2>
-      <p class="yes">I have had both shots of a Covid vaccine.</p>
+        <h2 class="yes">Yes</h2>
+        <p class="yes">I have had both shots of a Covid vaccine.</p>
     </div>
-  </div>
-  <div class="split right no box">
+</div>
+<div class="split right no box">
     <div class="centered no">
-      <h2 class="no">No</h2>
-      <p class="no">I have not received a Covid vaccine.</p>
+        <h2 class="no">No</h2>
+        <p class="no">I have not received a Covid vaccine.</p>
     </div>
-  </div>
+</div>
 </body>

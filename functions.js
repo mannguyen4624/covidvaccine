@@ -1,8 +1,6 @@
-var db = firebase.firestore();
 
 
-
-document.onclick = function(event) {
+document.onclick = function (event) {
     if (event === undefined) event = window.event;
     const target = 'target' in event ? event.target : event.srcElement;
 
@@ -13,36 +11,25 @@ document.onclick = function(event) {
     }
 }
 
-function updateCount(answer) {
-    let docRef = db.collection("answers").doc(answer);
-    docRef.get().then((doc) => {
-        let num = doc.data().count + 1;
-        db.collection("answers").doc(answer).set({
-            count: num
-        });
-    });
-}
-
 function getData(fromYes) {
+    let url = 'https://desolate-wave-83957.herokuapp.com/';
     if (fromYes) {
-        let docRef = db.collection("answers").doc("yes");
-        docRef.get().then((doc) => {
-            // + 1 because we haven't added this user to the count yet
-            document.getElementById("yes").innerText = "You are now 1 out of " + (doc.data().count+1) + " people who have gotten the Covid vaccine. :)";
-        })
-        docRef = db.collection("answers").doc("no");
-        docRef.get().then((doc) => {
-            document.getElementById("no").innerText = "On the other hand, " + doc.data().count + " people have not.";
-        })
+        url = url.concat("yes")
     } else {
-        let docRef = db.collection("answers").doc("no");
-        docRef.get().then((doc) => {
-            // + 1 because we haven't added this user to the count yet
-            document.getElementById("no").innerText = "You are now 1 out of " + (doc.data().count+1) + " people who have not gotten the Covid vaccine. :(";
-        })
-        docRef = db.collection("answers").doc("yes");
-        docRef.get().then((doc) => {
-            document.getElementById("yes").innerText = "On the other hand, " + doc.data().count + " people have.";
-        })
+        url = url.concat("no")
     }
+
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(jsonResponse) {
+            if (fromYes) {
+                document.getElementById("yes").innerText = `You are now 1 out of ${jsonResponse.yes} people who have gotten the Covid vaccine. :)`;
+                document.getElementById("no").innerText = `On the other hand, ${jsonResponse.no} people have not.`;
+            } else {
+                document.getElementById("no").innerText = `You are now 1 out of ${jsonResponse.no} people who have not gotten the Covid vaccine. :(`;
+                document.getElementById("yes").innerText = `On the other hand, ${jsonResponse.yes} people have.`;
+            }
+        });
 }
