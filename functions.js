@@ -15,12 +15,12 @@ document.onclick = function (event) {
         document.cookie = "response=yes";
         let updateUrl = url.concat("yes");
         fetch(updateUrl);
-        window.location.href = "yes.html";
+        window.location.replace("yes.html");
     } else if (target.classList.contains("no")) {
         document.cookie = "response=no";
         let updateUrl = url.concat("no");
         fetch(updateUrl);
-        window.location.href = "no.html";
+        window.location.replace("no.html");
     }
 }
 
