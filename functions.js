@@ -1,24 +1,21 @@
-
+let url = 'https://desolate-wave-83957.herokuapp.com/';
 
 document.onclick = function (event) {
     if (event === undefined) event = window.event;
     const target = 'target' in event ? event.target : event.srcElement;
 
     if (target.classList.contains("yes")) {
+        let updateUrl = url.concat("yes");
+        fetch(updateUrl);
         window.location.href = "yes.html";
     } else if (target.classList.contains("no")) {
+        let updateUrl = url.concat("no");
+        fetch(updateUrl);
         window.location.href = "no.html";
     }
 }
 
 function getData(fromYes) {
-    let url = 'https://desolate-wave-83957.herokuapp.com/';
-    if (fromYes) {
-        url = url.concat("yes")
-    } else {
-        url = url.concat("no")
-    }
-
     fetch(url)
         .then(function(response) {
             return response.json();
